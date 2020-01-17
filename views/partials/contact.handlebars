@@ -1,0 +1,91 @@
+<div class="contacts">
+  <div class='container a'>
+    <h2 class='form-head'><span>Training</span> Form</h2>
+    <div class="wrapper">
+      <div class="company-info">
+        <h3>Training Info</h3>
+        <p>On submit of your info you will be taken to our quick evaluation form.</p>
+      </div>
+      <div class="contact">
+        <form action="/training" id="training-form" method="post" role="form">
+          <p>
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" required />
+          </p>
+          <p>
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" required />
+          </p>
+          <p>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text" required />
+          </p>
+          <p>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required />
+          </p>
+          <p class="full">
+            <label for="school">High School</label>
+            <input id="school" name='school' type='text' required />
+          </p>
+          <p class="full">
+            <button type="submit">Submit</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class='container b'>
+    <h2 class='form-head'><span>Service</span> Form</h2>
+    <div class="wrapper">
+      <div class="company-info">
+        <h3>Contact us about your Work</h3>
+        <p>Send us an email and let us know what you're working on!</p>
+      </div>
+      <div class="contact">
+        <form action='/service' id='service-form' method='POST' role='form'>
+          <p>
+            <label for='firstName'>First Name</label>
+            <input class='firstName' name='firstName' type="text"required></input>
+          </p>
+          <p>
+            <label for='email'>Email</label>
+            <input class='email' name='email' type="email"required></input>
+          </p>
+          <p>
+            <label for='phone'>Phone Number</label>
+            <input class='phone' name='phone' type="tel"required></input>
+          </p>
+          <p>
+            <label for='interest'>Area of interest</label>
+            <select class='interestArea' name='interest' required>
+              <option disabled selected>
+                  Area of interest...
+              </option>
+              <option value='Data Development'>
+                  Data Development
+              </option>
+              <option value='Web Development'>
+                  Web Development
+              </option>
+              <option value='Statistics & Analytics'>
+                  Statistics & Analytics
+              </option>
+              <option value='Other'>
+                  Other
+              </option>
+            </select>
+          </p>
+          <p class="full">
+            <label for='message'>Tell us about your project</label>
+            <textarea class='message' name="message" spellCheck='true' required></textarea>
+          </p>
+          <p class="full">
+            <button class='submit' name='submit' type='submit' value='submit'>Submit</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

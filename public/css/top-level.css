@@ -1,0 +1,120 @@
+* {
+  font-family: 'Alata', sans-serif;
+}
+html {
+  text-rendering: optimizeLegibility;
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1000 - 300)));
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  color: #333;
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: #3AAD84;
+  color: #fff;
+  width: 100px;
+}
+/* NAV BAR */
+.nav-wrap {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background: #fff;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 10% 1fr 1fr 1fr 10%;
+  padding: 0.5em 0;
+}
+
+.logo {
+  width: 60%;
+  grid-column: 2;
+}
+
+.about {
+  text-decoration: none;
+  color: #333;
+  grid-column: 4;
+  justify-self: end;
+}
+
+#contact-us-btn {
+  grid-column: 3;
+  justify-self: center;
+}
+/* NAV BAR */
+
+/* FOOTER */
+footer {
+  background-color: #3b3a6d;
+  color: aliceblue;
+  text-align: center;
+}
+
+footer p {
+  margin-top: 20px;
+}
+/* FOOTER */
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1100) {
+}
+@media only screen and (max-width: 990px) {
+  .nav {
+    grid-auto-columns: 2.5% 47.5% 47.5% 2.5%;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+}
+
+@media (min-width: 715px) {
+  .mission-subgrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .vision-subgrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .tech-training {
+    grid-row: 1;
+  }
+
+  .contacts {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  .container.a {
+    margin-right: 10px;
+  }
+  .container.b {
+    margin-left: 10px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .wrapper > * {
+    padding: 2em;
+  }
+
+  .company-info h3,
+  .brand {
+    text-align: left;
+  }
+}
