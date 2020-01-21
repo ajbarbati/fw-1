@@ -33,6 +33,7 @@ app.set('view engine', 'handlebars')
 
 app.set('views', path.join(__dirname, '../views'))
 app.use(express.static('../public/'))
+app.use('/.netlify/functions/server', hbs.engine)
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
