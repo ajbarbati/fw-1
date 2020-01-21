@@ -200,11 +200,14 @@ footer p {
   .mission-subgrid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
+    margin-top: 150px;
+    margin-bottom: 150px;
   }
-
   .vision-subgrid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
+    margin-top: 150px;
+ 
   }
 
   .tech-training {

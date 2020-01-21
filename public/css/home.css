@@ -50,6 +50,8 @@ main {
 }
 /* MAIN */
 
+
+
 /* SECTION */
 .value-1, .value-2, .value-3 {
   background-color: #eeeeee;
@@ -86,25 +88,18 @@ main {
   max-width: 300px;
 }
 
-.certifications h4 {
+.certifications h4, .certifications-2 h4 {
   font-style: italic;
   font-weight: 400;
   margin-bottom: 0;
 }
 
-.mta {
-  width: 200px;
+.mta, .mta-2 {
+  width: 100%;
+  max-width: 200px;
+  margin-right: 20px;
 }
 
-.mission-subgrid {
-  margin-top: 150px;
-  margin-bottom: 150px;
-}
-
-.vision-subgrid {
-  margin-top: 150px;
-  margin-bottom: 150px;
-}
 
 .mission-subgrid img, .vision-subgrid img {
   border-radius: 4px;

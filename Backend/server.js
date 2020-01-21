@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-
+const serverless = require('serverless-http')
 require('dotenv').config()
 const path = require('path')
 const nodemailer = require('nodemailer')
@@ -14,7 +14,7 @@ app.listen(port, () => {
 
 app.use(express.static('public'))
 
-// Templating Engine
+// Tempesting Engine
 const hbs = handlebars.create({
   defaultLayout: 'main',
   //custom helper
@@ -31,6 +31,8 @@ const hbs = handlebars.create({
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
+app.set('views', path.join(__dirname, '../views'))
+app.use(express.static('../public/'))
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -103,14 +105,8 @@ app.post('/service', (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      type: 'OAuth2',
       user: process.env.GMAIL_USER,
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      refreshToken: process.env.REFRESH_TOKEN,
-      accessToken:
-        'ya29.Il-5B_AybGCJ5Qq5timu4G1epCzJZ81PuUixLqzm8p4KunRR5fdcjxDxcXQgVZ9I4RkXXpQC1pyA0X4dp2607c1XKshfAWJW1ufMXzvl_pGhwtx8j7mJgB51Hei1QIXgng',
-      expires: 3500
+      pass: process.env.GMAIL_PASS
     }
   })
 
@@ -136,3 +132,6 @@ app.post('/service', (req, res) => {
     console.log('Message %s sent: %s', info.messageId, info.response)
   })
 })
+
+
+module.exports.handler = serverless(app);
