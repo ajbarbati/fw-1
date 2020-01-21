@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Hind+Madurai:300|Montserrat:400i,700&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='css/grid.css'>
-    <link rel='stylesheet' href='css/top-level.css'>
     <link rel='stylesheet' href='css/slider.css'>
     <link rel='stylesheet' href='css/{{style}}'>
+    <link rel='stylesheet' href='css/top-level.css'>
     <title>{{title}}</title>
 </head>
+
 <body>
     {{{body}}}
 </body>
+<script>
+    document.getElementById("scroll-to-bottom").addEventListener("click", function () {
+  document.body.scrollIntoView(false);
+});
+
+</script>
 </html>
