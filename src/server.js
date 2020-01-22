@@ -14,6 +14,7 @@ app.use(express.static('public'))
 
 // Tempesting Engine
 const hbs = handlebars.create({
+  partialsDir: __dirname + '/views/partials',
   defaultLayout: 'main',
   //custom helper
   helpers: {
@@ -30,7 +31,7 @@ app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
 app.set('views', path.join(__dirname, '../views'))
-app.use(express.static('../public/'))
+app.use(express.static(path.resolve(__dirname, 'public')))
 
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
