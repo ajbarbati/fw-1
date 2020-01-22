@@ -1,7 +1,7 @@
 const express = require('express')
 const csp = require('express-csp-header')
 const app = express()
-// const serverless = require('serverless-http')
+const serverless = require('serverless-http')
 require('dotenv').config()
 const path = require('path')
 const nodemailer = require('nodemailer')
@@ -13,14 +13,15 @@ app.listen(process.env.PORT || port, () => console.log(`Express server listening
 
 app.use(express.static('public'))
 
-
 app.use(csp({
     policies: {
         'default-src': [csp.SELF],
-        'img-src': [csp.SELF],
-        'style-src': [csp.UNSAFE_INLINE],
-        'font-src': [csp.SELF],
-        'script-src': [csp.UNSAFE_INLINE]
+        'img-src': [csp.SELF, csp.INLINE],
+        'style-src': [csp.SELF],
+        'font-src': [csp.SELF, 'https://fonts.googleapis.com/css'],
+        'script-src': [csp.SELF, csp.INLINE],
+        'worker-src': [csp.NONE],
+        'block-all-mixed-content': true
     }
 }));
 
@@ -51,7 +52,6 @@ app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
 app.set('views', path.join(__dirname, '../views'))
-app.use(express.static(path.resolve(__dirname, 'public')))
 
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -154,4 +154,4 @@ app.post('/service', (req, res) => {
 })
 
 
-// module.exports.handler = serverless(app);
+module.exports.handler = serverless(app);
