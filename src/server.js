@@ -72,9 +72,17 @@ app.get('/about', (req, res) => {
   })
 })
 
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard', {
-    listEnable: false
+app.get('/careers', (req, res) => {
+  res.render('careers', {
+    title: 'Career Development',
+    style: 'careers.css'
+  })
+})
+
+app.get('/services', (req, res) => {
+  res.render('services', {
+    title: 'Services',
+    style: 'services.css'
   })
 })
 

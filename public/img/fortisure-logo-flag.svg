@@ -1,0 +1,15 @@
+<svg id="fortisure-logo-flag" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="194.801" height="127.745" viewBox="0 0 194.801 127.745">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.183" y1="-0.105" x2="0.823" y2="0.896" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#6a0911"/>
+      <stop offset="1" stop-color="#9f0c25"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.408" y1="-0.112" x2="0.737" y2="1.03" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="0.23" y1="-0.023" x2="0.707" y2="0.64" xlink:href="#linear-gradient"/>
+  </defs>
+  <path id="Path_127" data-name="Path 127" d="M20.081,20.931S55.885-.056,80.3.4s4.526,23.137,26.812,23.492S151.435,5.04,151.435,5.04c-6.216,7.866-26.91,31.762-51.106,35.3s-7.1-22.017-28.974-20.59S1.268,47.01,1.268,47.01Z" transform="matrix(0.999, 0.035, -0.035, 0.999, 22.424, 63.693)" fill="url(#linear-gradient)"/>
+  <path id="Path_127-2" data-name="Path 127" d="M15.633,4.375A218.029,218.029,0,0,1,58-1.723c22.173-.777,8.254,25.055,30.54,25.411S122.066,9.137,122.066,9.137c-6.217,7.866-16.112,27.462-40.307,31s-5.192-27.862-35.1-25.217S1.046,25.01,1.046,25.01Z" transform="matrix(0.999, 0.035, -0.035, 0.999, 63.251, 31.95)" fill="url(#linear-gradient-2)"/>
+  <path id="Path_127-3" data-name="Path 127" d="M12.185.009S44.328-5.118,55.132-1.5C69.982,3.326,64.658,20.568,75.5,22.411S102.346,9.14,102.346,9.14s-15.994,25.653-33.73,27.82-2.5-25.6-32.33-24.845S-.964,18.184-.964,18.184Z" transform="matrix(0.999, 0.035, -0.035, 0.999, 92.46, 2.822)" fill="url(#linear-gradient-3)"/>
+  <path id="Subtraction_1" data-name="Subtraction 1" d="M-7164.452-8027.511v-74.161h19.885v.033h36.783l-15.256,20.044h-21.527v28.091l-19.883,25.99Zm19.885-90.5h-19.851l.037-17.731h83.093l-14.429,17.71h-48.85v.02Z" transform="translate(7164.452 8138.75)" fill="#252e5e"/>
+  <path id="Path_4" data-name="Path 4" d="M9,0" transform="translate(30.794 127.745)" fill="none" stroke="#707070" stroke-width="1"/>
+</svg>
