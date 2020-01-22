@@ -8,9 +8,7 @@ const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const port = 8080
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`)
-})
+app.listen(process.env.PORT || port, () => console.log(`Express server listening on port ${process.env.PORT || port}!`))
 
 app.use(express.static('public'))
 
