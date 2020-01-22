@@ -1,6 +1,7 @@
 const express = require('express')
+const csp = require('express-csp-header')
 const app = express()
-const serverless = require('serverless-http')
+// const serverless = require('serverless-http')
 require('dotenv').config()
 const path = require('path')
 const nodemailer = require('nodemailer')
@@ -12,10 +13,29 @@ app.listen(process.env.PORT || port, () => console.log(`Express server listening
 
 app.use(express.static('public'))
 
+
+app.use(csp({
+    policies: {
+        'default-src': [csp.SELF],
+        'img-src': [csp.SELF],
+        'style-src': [csp.UNSAFE_INLINE],
+        'font-src': [csp.SELF],
+        'script-src': [csp.UNSAFE_INLINE]
+    }
+}));
+
+// HTTP response header will be defined as:
+// "Content-Security-Policy: default-src 'none'; img-src 'self';"
+
+
 // Tempesting Engine
 const hbs = handlebars.create({
-  partialsDir: __dirname + '/views/partials',
   defaultLayout: 'main',
+  layoutsDir: path.join(__dirname, '../views/layouts'),
+  partialsDir  : [
+        //  path to your partials
+        path.join(__dirname, '../views/partials'),
+  ],
   //custom helper
   helpers: {
     calc: function(value) {
@@ -134,4 +154,4 @@ app.post('/service', (req, res) => {
 })
 
 
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);
