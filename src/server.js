@@ -16,9 +16,9 @@ app.use(express.static('public'))
 app.use(csp({
     policies: {
         'default-src': [csp.SELF],
-        'img-src': [csp.SELF, csp.INLINE],
-        'style-src': [csp.SELF],
-        'font-src': [csp.SELF, 'https://fonts.googleapis.com/css'],
+        'img-src': [csp.SELF, csp.INLINE, 'https://fonts.googleapis.com/', `https://via.placeholder.com/`],
+        'style-src': [csp.SELF, csp.INLINE, 'https://fonts.googleapis.com/'],
+        'font-src': [csp.SELF, 'https://fonts.gstatic.com'],
         'script-src': [csp.SELF, csp.INLINE],
         'worker-src': [csp.NONE],
         'block-all-mixed-content': true
