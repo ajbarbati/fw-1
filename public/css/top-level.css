@@ -28,9 +28,9 @@ body {
 
 button {
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  background-color: #298164;
+  background-color: rgba(23, 185, 163, 0.842);
+  font-weight: bold;
   color: #fff;
   width: 100px;
   padding: 10px;
