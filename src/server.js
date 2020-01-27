@@ -21,6 +21,7 @@ app.use(csp({
         'font-src': [csp.SELF, 'https://fonts.gstatic.com'],
         'script-src': [csp.SELF, csp.INLINE],
         'worker-src': [csp.NONE],
+        'media-src': [csp.SELF, csp.INLINE],
         'block-all-mixed-content': true
     }
 }));

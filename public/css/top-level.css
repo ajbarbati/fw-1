@@ -36,6 +36,11 @@ button {
   padding: 10px;
 }
 
+button:hover {
+  background-color: rgba(31, 138, 124, 0.842);
+  button
+}
+
 a {
   text-decoration: none;
   color: #333;
