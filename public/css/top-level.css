@@ -36,10 +36,18 @@ button {
   padding: 10px;
 }
 
-button:hover {
-  background-color: rgba(31, 138, 124, 0.842);
-  button
+button:hover{
+  transition: ease-in 1s;
+  background-color: #3b3a6d;
 }
+
+button:active {
+  transition: .1s;
+  width: 115px;
+  letter-spacing: 1px;
+}
+
+
 
 a {
   text-decoration: none;
@@ -100,7 +108,7 @@ a {
 }
 
 /* [ON SMALL SCREENS] */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1081px) {
   .menu {
     text-align: end;
   }

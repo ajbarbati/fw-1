@@ -94,7 +94,7 @@ body {
     padding: 1.5em;
 }
 .it-words p, .data-words p {
-    margin: 4em 2em;
+    margin: 4em 2em;       
 }
 .it-words h4, .data-words h4 {
     color: #9F1224;
@@ -156,10 +156,19 @@ body {
     margin-top: 50px;
 }
 
-.career-more h4 {
+.career-more h4 a {
   font-style: italic;
   font-weight: 400;
   font-size: 1.1em;
+
+}
+
+.career-more h4 a:hover {
+    transition: ease-in .3s;
+    font-style: normal;
+    color: #fff;
+    background-color: #9F1224;
+    padding: .3em;
 }
 
 .get-started {
@@ -167,10 +176,16 @@ body {
     width: 250px;
     height: 100px;
 }
+
 .get-started a {
     color: #fff;
 }
 
+.get-started:active {
+    transition: .1s;
+    width: 200px;
+    letter-spacing: 1px;
+}
 /* CAREER info SECTION */
 
 footer {

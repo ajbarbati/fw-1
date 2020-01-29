@@ -4,10 +4,10 @@
     <div class="wrapper">
       <div class="company-info">
         <h3>Career Development Program</h3>
-        <p>On submit of your info you will be taken to our quick evaluation form.</p>
+        <p id="log">On submit of your info you will be taken to our quick evaluation form.</p>
       </div>
       <div class="contact">
-        <form action="/training" id="training-form" method="post" role="form">
+        <form action="/training" id="training-form" method="post" role="form" name='trainingForm'>
           <p>
             <label for="firstName">First Name</label>
             <input id="firstName" name="firstName" type="text" required />
@@ -29,7 +29,7 @@
             <input id="school" name='school' type='text' required />
           </p>
           <p class="full">
-            <button type="submit">Submit</button>
+            <button type="submit" id='submit'>Submit</button>
           </p>
         </form>
       </div>
