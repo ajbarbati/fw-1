@@ -17,7 +17,7 @@ app.use(express.static('public'))
 
 app.use(csp({
     policies: {
-        'default-src': [csp.SELF],
+        'default-src': [csp.SELF, csp.INLINE, 'https://www.youtube.com/embed/m_YMxye5mEA'],
         'img-src': [csp.SELF, csp.INLINE, 'https://fonts.googleapis.com/', `https://via.placeholder.com/`],
         'style-src': [csp.SELF, csp.INLINE, 'https://fonts.googleapis.com/'],
         'font-src': [csp.SELF, 'https://fonts.gstatic.com'],
