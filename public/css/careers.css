@@ -205,20 +205,20 @@ footer {
     grid-column: 1 / 4;
 }
 
-
-
-@media (min-width: 1000px) {
-    .hero-text-2 {
-        transform: translate(-175%, -50%);
-    }
-     
-}
-
-@media (max-width: 920px) {
+@media (max-width: 1075px) {
     iframe {
         width: 504px;
         height: 283.5px;
+    } 
+}
+
+@media (min-width: 1075px) {
+    .hero-text-2 {
+        transform: translate(-175%, -50%);
     }
+}
+
+@media (max-width: 920px) {
     .career-video {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;

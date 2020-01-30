@@ -75,7 +75,7 @@ a {
   min-width: 75px;
   max-width: 200px;
   grid-column: 2;
-  align-self: center;
+  margin-top: 5px;
 }
 
 .menu {
@@ -88,8 +88,20 @@ a {
 
 .contact-us-btn {
   grid-column: 3;
+  margin-top: 2px;
   justify-self: center;
-  align-self: center;
+}
+
+.nav label {
+  padding: 0 0 0 1em;
+}
+
+.nav ul li, .nav label:hover {
+  cursor: pointer;
+}
+
+.nav ul li:hover {
+  background-color: rgba(51, 51, 51, 0.281);
 }
 
 .nav label,
@@ -123,7 +135,9 @@ a {
     display: block;
     font-size: 1.5em;
     margin-bottom: 10px;
-    border-bottom: 1px solid rgba(51, 51, 51, 0.281);
+    display: grid;
+    justify-items: center;
+    text-align: center;
   }
 
   .nav ul {
@@ -201,12 +215,24 @@ footer p {
 }
 
 @media (max-width: 450px) {
+
+  .logo {
+    padding: 5px 0 0 0;
+  }
+
+  .contact-us-btn {
+    padding: 10px 0 0 0;
+  }
+
   .value-1 p, .value-2 p, .value-3 p {
     max-width: 200px;
   }
   .nav label {
     font-size: 3em;
-}
+  }
+  .nav ul li {
+    font-size: 1.2em;
+  }
 }
 
 @media (min-width: 715px) {
