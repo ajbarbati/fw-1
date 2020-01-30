@@ -87,6 +87,7 @@ a {
 }
 
 .contact-us-btn {
+  -ms-grid-column: 3;
   grid-column: 3;
   margin-top: 2px;
   justify-self: center;

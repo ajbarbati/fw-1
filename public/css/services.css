@@ -63,7 +63,7 @@ body {
 .s-sec2-services {
   display: grid;
   grid-template-columns: 10% 1fr 10%;
-  grid-template-rows: 35% 20% 35% 1fr 75px;
+  grid-template-rows: 15% 1fr 15% 1fr 75px;
 }
 
 .s-sec2-services h3 {
@@ -164,9 +164,15 @@ body {
 }
 
 @media (max-width: 850px) {
+  .s-sec2-services {
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+    grid-template-rows: 15% 15vh 15% 1fr 75px;
+  }  
   .s-sec2-list {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.9em;
   }
   .service.c {
     grid-row: 4;
@@ -183,10 +189,6 @@ body {
   .s-sec1-pillars {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-  }
-
-  .s-sec2-list {
-    font-size: 0.9em;
   }
 }
 
