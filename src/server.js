@@ -103,7 +103,7 @@ const request = mailjet
   "Messages":[
     {
       "From": {
-        "Email": "noreply@fortisureit.com",
+        "Email": "alex.barbati@fortisureit.com",
         "Name": `FortisureIT`
       },
       "To": [
@@ -131,71 +131,40 @@ request
 })
 
 
-// let transporter = nodemailer.createTransport({
-//   host: 'in-v3.mailjet.com',
-//   port: 465,
-//   secure: false,
-//   auth: {
-//     user: 'fb25bdaf040c1dd05cd81d39cd8e95ef',
-//     pass: '33832dd5d48e7065996b8263e71bc4fa'
-//   }
-// })
-
-// let mailOptions = {
-//   from: `${req.body.firstName} at: ${req.body.email}`,
-//   to: 'te27154@gmail.com',
-//   subject: `Info From: ${req.body.firstName} ${req.body.lastName}`,
-//   html: `
-//   <h3>New Contact Info</h3>
-//   <ul>
-//     <li><b>Name:</b> ${req.body.firstName} ${req.body.lastName}</li>
-//     <li><b>Email:</b> ${req.body.email}</li>
-//     <li><b>Phone:</b> ${req.body.phone}</li>
-//     <li><b>High School:</b> ${req.body.school}</li>
-//   </ul>`
-  
-// }
-// transporter.sendMail(mailOptions, (error, info) => {
-//   if (error) {
-//     return console.log(error)
-//   }
-//   console.log('Message %s sent: %s', info.messageId, info.response)
-// })
-
-
 
 //Service Form
 app.post('/service', (req, res) => {
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
+  const request = mailjet
+.post("send", {'version': 'v3.1'})
+.request({
+  "Messages":[
+    {
+      "From": {
+        "Email": "alex.barbati@fortisureit.com",
+        "Name": `FortisureIT`
+      },
+      "To": [
+        {
+          "Email": "alex.barbati@fortisureit.com",
+          "Name": `${req.body.firstName} ${req.body.lastName}`
+        }
+      ],
+      "Subject": 'Thank You for Contacting Us!',
+      "TextPart": "Contact",
+      "HTMLPart": `<h3>${req.body.firstName} thank you for reaching out.
+      </br>We will be in touch with you about your ${req.body.interest}  request shortly.
+      </br>If you have any additional questions please visit our <a href='https://www.fortisureit.com/'>website</a>!</h3>`,
+      "CustomID": "AppGettingStartedTest"
     }
+  ]
+})
+request
+  .then((result) => {
+    console.log(result.body)
+    res.redirect('/success')
   })
-
-  let mailOptions = {
-    from: `${req.body.firstName}`,
-    to: 'te27154@gmail.com',
-    subject: `Service Request: ${req.body.interest}`,
-    html: `
-        <h3>New Contact Info</h3>
-        <ul>
-          <li><b>Name:</b> ${req.body.firstName}</li>
-          <li><b>Email:</b> ${req.body.email}</li>
-          <li><b>Phone:</b> ${req.body.phone}</li>
-          <li><b>Area of Interest:</b> ${req.body.phone}</li>
-        </ul>
-        <h3>Message:</h3>
-        <p>${req.body.message}</p>`
-  }
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(error)
-    }
-    console.log('Message %s sent: %s', info.messageId, info.response)
+  .catch((err) => {
+    console.log(err.statusCode)
   })
 })
 

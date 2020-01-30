@@ -55,7 +55,8 @@ body {
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
     place-items: center;
-    margin-top: 50px;
+    margin-top: 75px;
+    grid-gap: 50px;
 }
 
 .video-header {
@@ -68,12 +69,23 @@ body {
     background-color: #fff;
     padding: 1em;
 }
+
+.video {
+    background-color: #fff;
+    padding: 20px;
+}
+
+
+iframe {
+    width: 560px;
+    height: 315px;
+}
 /* CAREER VIDEO SECTION */
 
 
 /* CAREER info SECTION */
 .career-info {
-    margin-top: 50px;
+    margin-top: 250px;
     grid-row: 4;
     grid-column: 2;
     display: grid;
@@ -202,7 +214,11 @@ footer {
      
 }
 
-@media (max-width: 800px) {
+@media (max-width: 920px) {
+    iframe {
+        width: 504px;
+        height: 283.5px;
+    }
     .career-video {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
@@ -257,9 +273,22 @@ footer {
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 590px) {
+    .career-info {
+        margin-top: 150px;
+    }
+    iframe {
+        width: 392px;
+        height: 220.5px;
+    }
+}
+@media (max-width: 450px) {
     .hero-text-2 div {
         font-size: .7em;
     }
-     
+    iframe {
+        width: 280px;
+        height: 157.5px;
+    }
 }
+
