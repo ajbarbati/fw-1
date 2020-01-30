@@ -6,7 +6,7 @@
 .grid {
   display: grid;
   grid-template:
-  "main" 100%
+  "main" 90vh
   "section" 1fr
   "footer" 100px
   / 1fr;
