@@ -103,26 +103,7 @@ function handleError (err) {
 
 
 
-// const emailData2 = {"Messages":[
-//   {
-//     "From": {
-//       "Email": "alex.barbati@fortisureit.com",
-//       "Name": `FortisureIT`
-//     },
-//     "To": [
-//       {
-//         "Email": "alex.barbati@fortisureit.com",
-//         "Name": `${req.body.firstName} ${req.body.lastName}`
-//       }
-//     ],
-//     "Subject": 'Thank You for Contacting Us!',
-//     "TextPart": "Contact",
-//     "HTMLPart": `<h3>${req.body.firstName} thank you for reaching out.
-//     </br>To learn more about our program please visit our<a href='https://www.fortisureit.com/'>website</a>!</h3>`,
-//     "CustomID": "AppGettingStartedTest"
-//   }
-// ]
-// };
+
 
 // Training Form
 app.post('/training', (req, res) => {
@@ -135,15 +116,41 @@ app.post('/training', (req, res) => {
       },
       "To": [
         {
-          "Email": "alex.barbati@fortisureit.com",
+          "Email": `${req.body.email}`,
           "Name": `${req.body.firstName} ${req.body.lastName}`
         }
       ],
       "Subject": 'Thank You for Contacting Us!',
       "TextPart": "Contact",
-      "HTMLPart": `<h3>${req.body.firstName} thank you for reaching out.
-      </br>To learn more about our program please visit our<a href='https://www.fortisureit.com/'>website</a>!</h3>`,
+      "HTMLPart": `<h3>${req.body.firstName} thank you for reaching out.</h3>
+      </br>To learn more about our program please visit our<a href='https://www.fortisureit.com/'>website</a>!`,
       "CustomID": "AppGettingStartedTest"
+    }
+  ]
+  };
+  const emailData2 = {
+    "Messages":[
+    {
+      "From": {
+        "Email": "alex.barbati@fortisureit.com",
+        "Name": `FortisureIT.com`
+      },
+      "To": [
+        {
+          "Email": "alex.barbati@fortisureit.com",
+          "Name": `${req.body.firstName} ${req.body.lastName}`
+        }
+      ],
+      "Subject": 'New Contact Info Form',
+      "TextPart": "Contact",
+      "HTMLPart": `
+      <h3>New Contact Form!</h3></br>
+      First Name: ${req.body.firstName}</br>
+      Last Name: ${req.body.lastName}</br>
+      Email: ${req.body.email}</br>
+      Phone: ${req.body.phone}</br>
+      School: ${req.body.school}`,
+      "CustomID": "ContactEmail"
     }
   ]
   };
@@ -166,20 +173,46 @@ const request = mailjet
       res.redirect('/success')
     })
     .catch(handleError);
+  request
+  .request(emailData2)
+    .then((result) => {
+      console.log(result.body)
+      res.redirect('/success')
+    })
+    .catch(handleError);
 })
-
 
 
 //Service Form
 app.post('/service', (req, res) => {
-  const request = mailjet
-.post("send", {'version': 'v3.1'})
-.request({
-  "Messages":[
+  const emailData = {
+    "Messages":[
+      {
+        "From": {
+          "Email": "alex.barbati@fortisureit.com",
+          "Name": `FortisureIT`
+        },
+        "To": [
+          {
+            "Email": `${req.body.email}`,
+            "Name": `${req.body.firstName} ${req.body.lastName}`
+          }
+        ],
+        "Subject": 'Thank You for Contacting Us!',
+        "TextPart": "Contact",
+        "HTMLPart": `<h3>${req.body.firstName} thank you for reaching out.</h3></br>
+        We will be in touch with you about your ${req.body.interest} request shortly.</br>
+        If you have any additional questions please visit our <a href='https://www.fortisureit.com/'>website</a>!</br>`,
+        "CustomID": "ServiceEmail"
+      }
+  ]
+  };
+  const emailData2 = {
+    "Messages":[
     {
       "From": {
         "Email": "alex.barbati@fortisureit.com",
-        "Name": `FortisureIT`
+        "Name": `FortisureIT.com`
       },
       "To": [
         {
@@ -187,23 +220,47 @@ app.post('/service', (req, res) => {
           "Name": `${req.body.firstName} ${req.body.lastName}`
         }
       ],
-      "Subject": 'Thank You for Contacting Us!',
+      "Subject": 'New Contact Info Form',
       "TextPart": "Contact",
-      "HTMLPart": `<h3>${req.body.firstName} thank you for reaching out.
-      </br>We will be in touch with you about your ${req.body.interest}  request shortly.
-      </br>If you have any additional questions please visit our <a href='https://www.fortisureit.com/'>website</a>!</h3>`,
-      "CustomID": "AppGettingStartedTest"
+      "HTMLPart": `
+      <h3>New Contact Form!</h3></br>
+      First Name: ${req.body.firstName}</br>
+      Organization: ${req.body.organization}</br>
+      Email: ${req.body.email}</br>
+      Phone: ${req.body.phone}</br>
+      Area of Interest: ${req.body.interest}</br>
+      Message: </br>
+      ${req.body.message}`,
+      "CustomID": "ServiceEmail"
     }
   ]
-})
-request
-  .then((result) => {
-    console.log(result.body)
-    res.redirect('/success')
-  })
-  .catch((err) => {
-    console.log(err.statusCode)
-  })
+  };
+
+  mailjet.post('/contact')
+  .request(
+    {
+      "Email": `${req.body.email}`,
+      'Name': `${req.body.firstName} ${req.body.organization}`
+    })
+  .catch(handleError)
+
+  
+const request = mailjet
+  .post("send", {'version': 'v3.1'})
+  request
+  .request(emailData)
+    .then((result) => {
+      console.log(result.body)
+      res.redirect('/success')
+    })
+    .catch(handleError);
+  request
+  .request(emailData2)
+    .then((result) => {
+      console.log(result.body)
+      res.redirect('/success')
+    })
+    .catch(handleError);
 })
 
 
