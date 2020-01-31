@@ -111,11 +111,9 @@ main {
 }
 
 .tech-students, .tech-training {
-  width: 90%;
+  width: 75%;
   max-width: 400px;
-  height: 90%;
   max-height: 400px;
-  image-rendering: optimizeQuality;
 }
 
 .training {

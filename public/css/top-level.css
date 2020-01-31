@@ -213,6 +213,10 @@ footer p {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
   }
+
+  .tech-students, .tech-training {
+    margin: 1em;
+  }
 }
 
 @media (max-width: 450px) {
@@ -309,13 +313,12 @@ footer p {
   .mission-subgrid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    margin-top: 150px;
-    margin-bottom: 150px;
+    margin-top: 50px;
   }
   .vision-subgrid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    margin-top: 150px;
+    margin-top: 50px;
   }
 
   .tech-training {

@@ -8,8 +8,6 @@ const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const port = 8080
 
-const mailjet = require ('node-mailjet')
-.connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE)
 
 app.listen(process.env.PORT || port, () => console.log(`Express server listening on port ${process.env.PORT || port}!`))
 
@@ -95,12 +93,41 @@ app.get('/success', (req, res) => {
 })
 
 
+const mailjet = require ('node-mailjet')
+.connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE)
+
+function handleError (err) {
+  throw new Error(err.ErrorMessage);
+}
+
+
+
+
+// const emailData2 = {"Messages":[
+//   {
+//     "From": {
+//       "Email": "alex.barbati@fortisureit.com",
+//       "Name": `FortisureIT`
+//     },
+//     "To": [
+//       {
+//         "Email": "alex.barbati@fortisureit.com",
+//         "Name": `${req.body.firstName} ${req.body.lastName}`
+//       }
+//     ],
+//     "Subject": 'Thank You for Contacting Us!',
+//     "TextPart": "Contact",
+//     "HTMLPart": `<h3>${req.body.firstName} thank you for reaching out.
+//     </br>To learn more about our program please visit our<a href='https://www.fortisureit.com/'>website</a>!</h3>`,
+//     "CustomID": "AppGettingStartedTest"
+//   }
+// ]
+// };
+
 // Training Form
 app.post('/training', (req, res) => {
-const request = mailjet
-.post("send", {'version': 'v3.1'})
-.request({
-  "Messages":[
+  const emailData = {
+    "Messages":[
     {
       "From": {
         "Email": "alex.barbati@fortisureit.com",
@@ -119,15 +146,26 @@ const request = mailjet
       "CustomID": "AppGettingStartedTest"
     }
   ]
-})
-request
-  .then((result) => {
-    console.log(result.body)
-    res.redirect('/success')
-  })
-  .catch((err) => {
-    console.log(err.statusCode)
-  })
+  };
+
+  mailjet.post('/contact')
+  .request(
+    {
+      "Email": `${req.body.email}`,
+      'Name': `${req.body.firstName} ${req.body.lastName}`
+    })
+  .catch(handleError)
+
+  
+const request = mailjet
+  .post("send", {'version': 'v3.1'})
+  request
+  .request(emailData)
+    .then((result) => {
+      console.log(result.body)
+      res.redirect('/success')
+    })
+    .catch(handleError);
 })
 
 

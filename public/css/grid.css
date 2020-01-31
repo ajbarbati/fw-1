@@ -40,8 +40,8 @@ section {
   display: grid;
   grid-template-columns: 10% 1fr 1fr 1fr 1fr 10%;
   -ms-grid-columns: 10% 1fr 1fr 1fr 1fr 10%;
-  grid-template-rows:  200px 200px 200px 200px 400px 400px 200px 700px 700px 150px 200px 200px 700px 200px 1fr 200px;
-  -ms-grid-rows:   200px 200px 200px 200px 400px 400px 200px 700px 700px 150px 200px 200px 700px 200px 1fr 200px;
+  grid-template-rows:  200px 200px 200px 200px 400px 400px 200px 450px 450px 100px 200px 150px 700px 150px 1fr 150px;
+  -ms-grid-rows:   200px 200px 200px 200px 400px 400px 200px 450px 450px 150px 200px 150px 700px 150px 1fr 150px;
 }
 .value-1 {
   grid-row: 1;
