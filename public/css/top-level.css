@@ -47,8 +47,6 @@ button:active {
   letter-spacing: 1px;
 }
 
-
-
 a {
   text-decoration: none;
   color: #333;
@@ -120,7 +118,16 @@ a {
   padding: 10px;
 }
 
+
+
 /* [ON SMALL SCREENS] */
+
+@media (max-width: 709px) {
+  .li-2 {
+    text-align: left;
+  }
+}
+
 @media screen and (max-width: 1081px) {
   .menu {
     text-align: end;
@@ -133,12 +140,10 @@ a {
   }
 
   .nav ul li {
-    display: block;
     font-size: 1.5em;
     margin-bottom: 10px;
     display: grid;
-    justify-items: center;
-    text-align: center;
+    justify-items: start;
   }
 
   .nav ul {
@@ -236,7 +241,7 @@ footer p {
     font-size: 3em;
   }
   .nav ul li {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 }
 

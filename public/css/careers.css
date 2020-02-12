@@ -21,10 +21,10 @@ span {
 }
 
 .parallax-2 {
-    background-image: url(../img/career-header.jpg);
+    background-image: url(../img/development.jpg);
     height: 100%;
     background-attachment: fixed;
-    background-position: center;
+    background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
