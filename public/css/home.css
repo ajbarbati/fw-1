@@ -188,6 +188,12 @@ main {
   height: 75px;
 }
 
+.a-button:hover, .b-button:hover{
+  background-color: #333;
+  margin-left: 2em;
+  transition: ease-in-out .5s;
+}
+
 .b-button {
   background-color: #3B3A6D;
 }
