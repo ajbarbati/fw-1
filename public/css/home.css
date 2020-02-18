@@ -289,11 +289,6 @@ main {
   color: #fff;
 }
 
-.contact form button:hover, .contact form button:focus {
-
-  outline: 0;
-  transition: padding 2s ease-in-out;
-}
 
 /* FORMS */
 

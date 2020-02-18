@@ -29,7 +29,7 @@ body {
 button {
   border: none;
   cursor: pointer;
-  background-color: rgba(23, 185, 163, 0.842);
+  background-color: #17b9a3d7;
   font-weight: bold;
   color: #fff;
   width: 100px;
@@ -37,12 +37,12 @@ button {
 }
 
 button:hover{
-  transition: ease-in 1s;
+  transition: ease-in .5s;
   background-color: #3b3a6d;
 }
 
 button:active {
-  transition: .1s;
+  transition: .05s;
   width: 115px;
   letter-spacing: 1px;
 }

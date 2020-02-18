@@ -1,3 +1,4 @@
+
 body {
     background-color: #eeeeee;
 }
@@ -275,10 +276,17 @@ footer {
     .career-more button {
         justify-self: end;
     }
+
+    .it-words {
+        margin-top: 150px;
+    }
 }
 
 
 @media (max-width: 590px) {
+    .it-words {
+        margin-top: 0px;
+    }
     .career-info {
         margin-top: 150px;
     }
@@ -287,9 +295,12 @@ footer {
         height: 220.5px;
     }
 }
-@media (max-width: 450px) {
+@media (max-width: 538px) {
     .hero-text-2 div {
         font-size: .7em;
+    }
+    .career-info {
+        margin-top: 90px;
     }
     iframe {
         width: 280px;
@@ -297,3 +308,27 @@ footer {
     }
 }
 
+@media (max-width: 450px) {
+    .hero-text-2 div {
+        font-size: .7em;
+    }
+    .career-info {
+        margin-top: 90px;
+    }
+    iframe {
+        width: 280px;
+        height: 157.5px;
+    }
+    .hero-text-2 {
+        top: 70%;
+        left: 50%;
+        transform: translate(-100%, -50%);
+    }
+}
+
+@media (max-width: 395px) {
+    iframe {
+        width: 210px;
+        height: 118.125px;
+    }
+}
