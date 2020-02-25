@@ -2,40 +2,55 @@ const express = require('express')
 const csp = require('express-csp-header')
 const app = express()
 const serverless = require('serverless-http')
-require('dotenv').config({path: `${__dirname}/.env`})
+require('dotenv').config({ path: `${__dirname}/.env` })
 const path = require('path')
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const port = 8080
 
-
-app.listen(process.env.PORT || port, () => console.log(`Express server listening on port ${process.env.PORT || port}!`))
+app.listen(process.env.PORT || port, () =>
+  console.log(`Express server listening on port ${process.env.PORT || port}!`)
+)
 
 app.use(express.static('public'))
 
-app.use(csp({
+app.use(
+  csp({
     policies: {
-        'default-src': [csp.SELF, csp.INLINE, 'https://www.youtube.com/embed/m_YMxye5mEA'],
-        'img-src': [csp.SELF, csp.INLINE, 'https://fonts.googleapis.com/', `https://via.placeholder.com/`],
-        'style-src': [csp.SELF, csp.INLINE, 'https://fonts.googleapis.com/'],
-        'font-src': [csp.SELF, 'https://fonts.gstatic.com'],
-        'script-src': [csp.SELF, csp.INLINE],
-        'worker-src': [csp.NONE],
-        'media-src': [csp.SELF, csp.INLINE, 'https://www.youtube.com/embed/m_YMxye5mEA'],
-        'block-all-mixed-content': true
+      'default-src': [
+        csp.SELF,
+        csp.INLINE,
+        'https://www.youtube.com/embed/m_YMxye5mEA'
+      ],
+      'img-src': [
+        csp.SELF,
+        csp.INLINE,
+        'https://fonts.googleapis.com/',
+        `https://res.cloudinary.com/`
+      ],
+      'style-src': [csp.SELF, csp.INLINE, 'https://fonts.googleapis.com/'],
+      'font-src': [csp.SELF, 'https://fonts.gstatic.com'],
+      'script-src': [csp.SELF, csp.INLINE],
+      'worker-src': [csp.NONE],
+      'media-src': [
+        csp.SELF,
+        csp.INLINE,
+        'https://www.youtube.com/embed/m_YMxye5mEA'
+      ],
+      'block-all-mixed-content': true
     }
-}));
+  })
+)
 // HTTP response header will be defined as:
 // "Content-Security-Policy: default-src 'none'; img-src 'self';"
-
 
 // Template Engine
 const hbs = handlebars.create({
   defaultLayout: 'main',
   layoutsDir: path.join(__dirname, '../views/layouts'),
-  partialsDir  : [
-        //  path to your partials
-        path.join(__dirname, '../views/partials'),
+  partialsDir: [
+    //  path to your partials
+    path.join(__dirname, '../views/partials')
   ],
   //custom helper
   helpers: {
@@ -43,7 +58,7 @@ const hbs = handlebars.create({
       return value + 7
     },
     list: function(value, options) {
-      return "<h2>" + options.fn({ test: value, page:'hey yo' })+ "</h2>"
+      return '<h2>' + options.fn({ test: value, page: 'hey yo' }) + '</h2>'
     }
   }
 })
@@ -51,17 +66,15 @@ app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 app.set('views', path.join(__dirname, '../views'))
 
-
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-
 
 // viewed at http://localhost:8080
 app.get('/', (req, res) => {
   res.render('home', {
     title: 'Fortisure IT',
-    style: 'home.css',
+    style: 'home.css'
   })
 })
 
@@ -92,37 +105,39 @@ app.get('/success', (req, res) => {
   })
 })
 
+const mailjet = require('node-mailjet').connect(
+  process.env.MJ_APIKEY_PUBLIC,
+  process.env.MJ_APIKEY_PRIVATE
+)
 
-const mailjet = require ('node-mailjet')
-.connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE)
-
-function handleError (err) {
+function handleError(err) {
   throw new Error(err)
 }
 
-
-
-
-
-
 // Training Form
-app.post('/training', (req, res) => {
+app.post('/training', [
+  check(req.body.firstName).trim().whitelist(),
+  check(req.body.lastName).trim().whitelist(),
+  check(req.body.email).trim().normalizeEmail(),
+  check(req.body.phone).trim().whitelist(),
+  check(req.body.school).trim().whitelist()
+], (req, res) => {
+
   const emailData = {
-    "Messages":[
-    {
-      "From": {
-        "Email": "alex.barbati@fortisureit.com",
-        "Name": `FortisureIT`
-      },
-      "To": [
-        {
-          "Email": `${req.body.email}`,
-          "Name": `${req.body.firstName} ${req.body.lastName}`
-        }
-      ],
-      "Subject": 'Thank You from FortisureIT',
-      "HTMLPart":
-      `<!DOCTYPE html>
+    Messages: [
+      {
+        From: {
+          Email: 'training@fortisureit.com',
+          Name: `Fortisure`
+        },
+        To: [
+          {
+            Email: `${req.body.email}`,
+            Name: `${req.body.firstName} ${req.body.lastName}`
+          }
+        ],
+        Subject: 'Thank You from FortisureIT',
+        HTMLPart: `<!DOCTYPE html>
       <html
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:v="urn:schemas-microsoft-com:vml"
@@ -562,83 +577,84 @@ app.post('/training', (req, res) => {
           </div>
         </body>
       </html>`
-    }
-  ]
-  };
+      }
+    ]
+  }
   const emailData2 = {
-    "Messages":[
-    {
-      "From": {
-        "Email": "alex.barbati@fortisureit.com",
-        "Name": `FortisureIT.com`
-      },
-      "To": [
-        {
-          "Email": "alex.barbati@fortisureit.com",
-          "Name": `${req.body.firstName} ${req.body.lastName}`
-        }
-      ],
-      "Subject": 'New Contact Info Form',
-      "TextPart": "Contact",
-      "HTMLPart": `
+    Messages: [
+      {
+        From: {
+          Email: 'training@fortisureit.com',
+          Name: `Fortisure`
+        },
+        Cc: [
+          {
+            Email: 'brandon.taylor@fortisureit.com',
+            Name: 'Brandon Taylor'
+          }
+        ],
+        Bcc: [
+          {
+            Email: 'scott.arnold@fortisureit.com',
+            Name: 'Scott Arnold'
+          }
+        ],
+        Subject: 'New Contact Info Form',
+        TextPart: 'Contact',
+        HTMLPart: `
       <h3>New Contact Form!</h3></br>
       First Name: ${req.body.firstName}</br>
       Last Name: ${req.body.lastName}</br>
       Email: ${req.body.email}</br>
       Phone: ${req.body.phone}</br>
-      School: ${req.body.school}`,
-      "CustomID": "ContactEmail"
-    }
-  ]
-  };
+      School: ${req.body.school}`
+      }
+    ]
+  }
 
-  mailjet.post('/contact')
-  .request(
-    {
-      "Email": `${req.body.email}`,
-      'Name': `${req.body.firstName} ${req.body.lastName}`
+  mailjet
+    .post('/contact')
+    .request({
+      Email: `${req.body.email}`,
+      Name: `${req.body.firstName} ${req.body.lastName}`
     })
-  .catch(handleError)
+    .catch(handleError)
 
-  
-const request = mailjet
-  .post("send", {'version': 'v3.1'})
+  const request = mailjet.post('send', { version: 'v3.1' })
   request
-  .request(emailData)
-    .then((result) => {
+    .request(emailData)
+    .then(result => {
       console.log(result.body)
       res.redirect('/success')
     })
-    .catch(handleError);
+    .catch(handleError)
   request
-  .request(emailData2)
-    .then((result) => {
+    .request(emailData2)
+    .then(result => {
       console.log(result.body)
       res.redirect('/success')
     })
-    .catch(handleError);
+    .catch(handleError)
 })
-
 
 //Service Form
 app.post('/service', (req, res) => {
   const emailData = {
-    "Messages":[
+    Messages: [
       {
-        "From": {
-          "Email": "alex.barbati@fortisureit.com",
-          "Name": `FortisureIT`
+        From: {
+          Email: 'info@fortisureit.com',
+          Name: `Info / Service`
         },
-        "To": [
+        To: [
           {
-            "Email": `${req.body.email}`,
-            "Name": `${req.body.firstName} ${req.body.lastName}`
+            Email: `${req.body.email}`,
+            Name: `${req.body.firstName} ${req.body.lastName}`
           }
         ],
-        "Subject": 'Thank You for Contacting Us!',
-        "TextPart": "Contact",
-        "HTMLPart":
-      `<!DOCTYPE html>
+        Subject: 'Thank You for Contacting Us!',
+        TextPart: 'Contact',
+        HTMLPart: `<!DOCTYPE html>
       <html
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:v="urn:schemas-microsoft-com:vml"
@@ -1079,24 +1095,35 @@ app.post('/service', (req, res) => {
         </body>
       </html>`
       }
-  ]
-  };
+    ]
+  }
   const emailData2 = {
-    "Messages":[
-    {
-      "From": {
-        "Email": "alex.barbati@fortisureit.com",
-        "Name": `FortisureIT.com`
-      },
-      "To": [
-        {
-          "Email": "alex.barbati@fortisureit.com",
-          "Name": `${req.body.firstName} ${req.body.lastName}`
-        }
-      ],
-      "Subject": 'New Contact Info Form',
-      "TextPart": "Contact",
-      "HTMLPart": `
+    Messages: [
+      {
+        From: {
+          Email: 'info@fortisureit.com',
+          Name: `Info / Service`
+        },
+        To: [
+          {
+            Email: 'info@fortisureit.com'
+          }
+        ],
+        Cc: [
+          {
+            Email: 'rob.kozak@fortisureit.com',
+            Name: 'Rob Kozak'
+          }
+        ],
+        Bcc: [
+          {
+            Email: 'scott.arnold@fortisureit.com',
+            Name: 'Scott Arnold'
+          }
+        ],
+        Subject: 'New Contact Info Form',
+        TextPart: 'Contact',
+        HTMLPart: `
       <h3>New Contact Form!</h3></br>
       First Name: ${req.body.firstName}</br>
       Organization: ${req.body.organization}</br>
@@ -1104,38 +1131,34 @@ app.post('/service', (req, res) => {
       Phone: ${req.body.phone}</br>
       Area of Interest: ${req.body.interest}</br>
       Message: </br>
-      ${req.body.message}`,
-      "CustomID": "ServiceEmail"
-    }
-  ]
-  };
+      ${req.body.message}`
+      }
+    ]
+  }
 
-  mailjet.post('/contact')
-  .request(
-    {
-      "Email": `${req.body.email}`,
-      'Name': `${req.body.firstName} ${req.body.organization}`
+  mailjet
+    .post('/contact')
+    .request({
+      Email: `${req.body.email}`,
+      Name: `${req.body.firstName} ${req.body.organization}`
     })
-  .catch(handleError)
+    .catch(handleError)
 
-  
-const request = mailjet
-  .post("send", {'version': 'v3.1'})
+  const request = mailjet.post('send', { version: 'v3.1' })
   request
-  .request(emailData)
-    .then((result) => {
+    .request(emailData)
+    .then(result => {
       console.log(result.body)
       res.redirect('/success')
     })
-    .catch(handleError);
+    .catch(handleError)
   request
-  .request(emailData2)
-    .then((result) => {
+    .request(emailData2)
+    .then(result => {
       console.log(result.body)
       res.redirect('/success')
     })
-    .catch(handleError);
+    .catch(handleError)
 })
 
-
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app)
