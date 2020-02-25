@@ -587,18 +587,9 @@ app.post('/training', [
           Email: 'training@fortisureit.com',
           Name: `Fortisure`
         },
-        Cc: [
-          {
-            Email: 'brandon.taylor@fortisureit.com',
-            Name: 'Brandon Taylor'
-          }
-        ],
-        Bcc: [
-          {
-            Email: 'scott.arnold@fortisureit.com',
-            Name: 'Scott Arnold'
-          }
-        ],
+        To: {
+          Email: 'alex.barbati@fortisureit.com'
+        },
         Subject: 'New Contact Info Form',
         TextPart: 'Contact',
         HTMLPart: `
@@ -1104,23 +1095,9 @@ app.post('/service', (req, res) => {
           Email: 'info@fortisureit.com',
           Name: `Info / Service`
         },
-        To: [
-          {
-            Email: 'info@fortisureit.com'
-          }
-        ],
-        Cc: [
-          {
-            Email: 'rob.kozak@fortisureit.com',
-            Name: 'Rob Kozak'
-          }
-        ],
-        Bcc: [
-          {
-            Email: 'scott.arnold@fortisureit.com',
-            Name: 'Scott Arnold'
-          }
-        ],
+        To: {
+          Email: 'alex.barbati@fortisureit.com'
+        },
         Subject: 'New Contact Info Form',
         TextPart: 'Contact',
         HTMLPart: `
