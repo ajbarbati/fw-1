@@ -122,15 +122,14 @@ app.post('/training', [
   body('lastName').trim().whitelist(),
   body('email').trim().normalizeEmail(),
   body('phone').trim().whitelist(),
-  body('school').trim().whitelist()
+  body('school').whitelist()
 ], (req, res) => {
 
   const emailData = {
     Messages: [
       {
         From: {
-          Email: 'training@fortisureit.com',
-          Name: `Fortisure`
+          Email: 'alex.barbati@fortisureit.com',
         },
         To: [
           {
@@ -586,8 +585,7 @@ app.post('/training', [
     Messages: [
       {
         From: {
-          Email: 'training@fortisureit.com',
-          Name: `Fortisure`
+          Email: 'alex.barbati@fortisureit.com',
         },
         To: {
           Email: 'alex.barbati@fortisureit.com'
@@ -631,12 +629,19 @@ app.post('/training', [
 })
 
 //Service Form
-app.post('/service', (req, res) => {
+app.post('/service',  [
+  body('firstName').trim().whitelist(),
+  body('organization').trim().whitelist(),
+  body('email').trim().normalizeEmail(),
+  body('phone').trim().whitelist(),
+  body('interest'),
+  body('message').whitelist()
+], (req, res) => {
   const emailData = {
     Messages: [
       {
         From: {
-          Email: 'info@fortisureit.com',
+          Email: 'alex.barbati@fortisureit.com',
           Name: `Info / Service`
         },
         To: [
@@ -1094,8 +1099,7 @@ app.post('/service', (req, res) => {
     Messages: [
       {
         From: {
-          Email: 'info@fortisureit.com',
-          Name: `Info / Service`
+          Email: 'alex.barbati@fortisureit.com',
         },
         To: {
           Email: 'alex.barbati@fortisureit.com'
