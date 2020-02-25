@@ -1,4 +1,5 @@
 const express = require('express')
+const { body } = require('express-validator')
 const csp = require('express-csp-header')
 const app = express()
 const serverless = require('serverless-http')
@@ -69,6 +70,7 @@ app.set('views', path.join(__dirname, '../views'))
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(express.json())
 
 // viewed at http://localhost:8080
 app.get('/', (req, res) => {
@@ -116,11 +118,11 @@ function handleError(err) {
 
 // Training Form
 app.post('/training', [
-  check(req.body.firstName).trim().whitelist(),
-  check(req.body.lastName).trim().whitelist(),
-  check(req.body.email).trim().normalizeEmail(),
-  check(req.body.phone).trim().whitelist(),
-  check(req.body.school).trim().whitelist()
+  body('firstName').trim().whitelist(),
+  body('lastName').trim().whitelist(),
+  body('email').trim().normalizeEmail(),
+  body('phone').trim().whitelist(),
+  body('school').trim().whitelist()
 ], (req, res) => {
 
   const emailData = {
