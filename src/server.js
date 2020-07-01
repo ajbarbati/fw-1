@@ -17,6 +17,7 @@ visitor.pageview('/', 'https://fortisureit.com', 'Fortisure IT').send()
 visitor.pageview('/about', 'https://fortisureit.com/about', 'About').send()
 visitor.pageview('/careers', 'https://fortisureit.com/careers', 'Career Development').send()
 visitor.pageview('/services', 'https://fortisureit.com/services', 'Services').send()
+visitor.pageview('/ourTeam', 'https://fortisureit.com/ourTeam', 'Our Team').send()
 
 app.listen(process.env.PORT || port, () =>
   console.log(`Express server listening on port ${process.env.PORT || port}!`)
@@ -120,6 +121,12 @@ app.get('/success', (req, res) => {
   res.render('success', {
     title: 'Thank You',
     style: 'success.css'
+  })
+})
+app.get('/ourTeam', (req, res) => {
+  res.render('ourTeam', {
+    title: 'Meet Our Team',
+    style: 'ourTeam.css'
   })
 })
 app.get('/failed', (req, res) => {
