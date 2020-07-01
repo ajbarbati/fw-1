@@ -1,0 +1,125 @@
+body {
+  background-color: #eeeeee;
+}
+
+/* SECTION 1 */
+.s-sec1 {
+  grid-row: 3;
+  grid-column: 1/ 4;
+  width: 100%;
+  place-items: center;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+.greetings-title {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 64px;
+}
+/* SECTION 1 */
+
+/* SECTION 2 */
+/* OUR TEAM - TOP */
+.ourTeam-top-container {
+  display: grid;
+  grid-template-columns: 10px 1fr 1fr 1fr 10px;
+  height: 100%;
+  width: 100%;
+  grid-gap: 17px;
+  margin: 5px;
+}
+.ourTeam-top-pillar {
+  display: grid;
+  grid-template-rows: 20% 7% auto;
+  height: 100%;
+}
+
+.ourTeam-top-nameNTitle {
+  background-color: #3b3a6d;
+  color: #fff;
+  padding: 1.5em;
+  padding-top: 0;
+}
+.ourTeam-top-nameNTitle h1 {
+  text-align: center;
+  color: #fff;
+}
+.ourTeam-top-nameNTitle h4 {
+  color: #fff;
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+}
+
+.red-arrow {
+  grid-row: 2;
+  width: 100%;
+  max-width: 25px;
+  align-self: center;
+  justify-self: center;
+}
+.red-arrow {
+  transform: rotate(90deg);
+}
+
+.ourTeam-top-description {
+  grid-row: 3;
+  background-color: #fff;
+  padding: 1.5em;
+}
+.ourTeam-top-description p {
+  margin: 0px;
+  margin: 0.5em;
+  font-size: 0.9em;
+}
+/* OUR TEAM - TOP */
+
+/* SECTION 2 */
+@media (max-width: 1025px) {
+  .s-sec1 {
+    margin-top: 0%;
+    margin-bottom: 0%;
+  }
+  .ourTeam-top-container {
+    grid-template-columns: 1fr;
+  }
+  .ourTeam-top-pillar {
+    grid-template-rows: auto 14% auto;
+  }
+  .ourTeam-top-nameNTitle h1 {
+    font-size: 42px;
+  }
+  .ourTeam-top-nameNTitle h4 {
+    font-size: 26px;
+  }
+  .ourTeam-top-description {
+    margin-bottom: 5%;
+  }
+  .ourTeam-top-description p {
+    margin: 0px;
+    margin: 0.5em;
+    font-size: 1.2em;
+  }
+}
+@media (max-width: 625px) {
+  .s-sec1 {
+    margin-top: 18%;
+    margin-bottom: 5%;
+  }
+  .greetings-title {
+    font-size: 42px;
+  }
+}
+@media (max-width: 410px) {
+  .greetings-title {
+    font-size: 36px;
+  }
+  .ourTeam-top-pillar {
+    grid-template-rows: auto 10% auto;
+  }
+}
+footer {
+  grid-row: 5;
+  grid-column: 1 / 4;
+}

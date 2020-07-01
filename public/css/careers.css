@@ -15,6 +15,11 @@ span {
     color: #9F1224;
     font-family: 'Montserrat', sans-serif;
 }
+
+.img-sub {
+    max-width: 100%;
+    height: auto;
+}
 /* CAREER HEADER */
 .career-header {
     grid-row: 2;
@@ -22,7 +27,7 @@ span {
 }
 
 .parallax-2 {
-    background-image: url(../img/development.jpg);
+    background-image: url(https://res.cloudinary.com/dxleu7n2q/image/upload/v1582555310/fortisure-it-site/development_rbidg2.jpg);
     height: 100%;
     background-attachment: fixed;
     background-position: right;
@@ -41,8 +46,8 @@ span {
 
 .hero-text-2 div {
     background-color: rgba(124, 124, 124, 0.651);
-    padding: .3em 1em;
-    font-size: .9em;
+    padding: 0em 1em;
+    font-size: 1.1em;
 }
 
 .hero-text-2 h1 {
@@ -279,6 +284,13 @@ footer {
 
     .it-words {
         margin-top: 150px;
+    }
+    .video {
+        display: grid;
+        place-items: center;
+    }
+    .img-sub {
+        max-width: 50%; 
     }
 }
 

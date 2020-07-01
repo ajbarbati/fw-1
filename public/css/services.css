@@ -1,5 +1,3 @@
-
-
 .services-container {
   display: grid;
   grid-template-columns: 10% 1fr 10%;
@@ -14,7 +12,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
   grid-gap: 10px;
-
 }
 
 /* SECTION 1 */
@@ -51,7 +48,7 @@
   color: #fff;
 }
 
- img {
+img {
   max-height: 40vh;
   width: 100%;
 }
@@ -172,7 +169,7 @@
     display: grid;
     grid-template-columns: 10% 1fr 10%;
     grid-template-rows: 15% 15vh 15% 1fr 75px;
-  }  
+  }
   .s-sec2-list {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
